@@ -14,7 +14,7 @@ const VideoCall = () => {
     const [peerId, setPeerId] = useState("");
     const [stream, setStream] = useState(null);
     const [isVideoOff, setIsVideoOff] = useState(true);
-    const [isAudioMuted, setIsAudioMuted] = useState(true);
+    const [isAudioMuted, setIsAudioMuted] = useState(false);
     const [users, setUsers] = useState([]);
     const userName = localStorage.getItem("userName") || "Guest";
 
@@ -107,13 +107,13 @@ const VideoCall = () => {
     };
 
     return (
-        <Box>
-        <Box p={4} textAlign="center">
+        <Box bg={"grey"}height="100%">
+        <Box p={4} textAlign="center" >
             <Heading size="lg" mb={3}>Room: {roomId}</Heading>
 
-            <Grid templateColumns={{ base: "2fr 1fr" , md: "2fr 1fr" }} gap={4} p={4} minH="500px" width="100%">
+            <Grid templateColumns={{ base: "2fr 1fr" , md: "2fr 1fr" }}  p={4} minH="500px"  width="100%" maxH="500px"gap="50px" maxW={{ base: "100%", sm: "90%", md: "80%" }}>
                 {/* Main Video Section */}
-                <GridItem bg="gray.700" borderRadius="10px" position="relative" display="flex" alignItems="center" justifyContent="center" overflow="hidden">
+                <GridItem bg="gray.700" borderRadius="10px" position="relative" display="flex" alignItems="center" justifyContent="center" overflow="hidden"  maxH="500px">
                     {!isVideoOff ? (
                         <video ref={myVideoRef} autoPlay muted style={{ width: "100%", borderRadius: "10px" }} />
                     ) : (
@@ -146,7 +146,7 @@ const VideoCall = () => {
             </Grid>
 
             {/* Controls */}
-            <Box mt={4} display="flex" justifyContent="center" gap={2}>
+            <Box  display="flex" justifyContent="center" gap={2}mt={10}>
                 <Button colorScheme="red" onClick={toggleAudio}>{isAudioMuted ? "Unmute" : "Mute"}</Button>
                 <Button colorScheme="blue" onClick={toggleVideo}>{isVideoOff ? "Turn Video On" : "Turn Video Off"}</Button>
                 <Button colorScheme="gray" onClick={() => navigate("/")}>Leave Call</Button>
